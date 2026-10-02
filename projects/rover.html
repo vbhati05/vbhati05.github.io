@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Six-Wheeled Rover | Vanshika Bhatia</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="../index.html">Home</a>
+    <nav class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="Resume_26-27.pdf">Resume</a>
+      <a class="nav-cta" href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero">
+    <div class="container">
+      <a class="back" href="../index.html">← Back to portfolio</a>
+      <div class="eyebrow">Space Technology & Aeronautical Rocketry · Electronics</div>
+      <h1 class="project-title">Six-Wheeled Rover</h1>
+      <p class="project-deck">A mobile robotics project combining custom PCB design, motor control, Arduino programming, and wireless communication.</p>
+      <div class="project-meta"><span class="tag">Jul 2024 – Aug 2024</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container project-body">
+      <aside class="project-aside">
+        <h4>Tools & methods</h4>
+        <p>Eagle · Arduino · PCB Design · Motor Drivers · HC-05 · Wireless Communication</p>
+        <h4>Focus</h4>
+        <p>Electronics · Controls · Hardware Integration</p>
+      </aside>
+
+      <div class="case">
+
+  <h2>Overview</h2>
+  <p>
+    The six-wheeled rover project focused on integrating custom electronics, motor control,
+    embedded software, and wireless communication into a compact mobile robotics platform.
+  </p>
+
+  <p>
+    My work covered control architecture, PCB design and assembly, Arduino programming,
+    motor-driver integration, wireless communication, and full-system testing.
+  </p>
+
+
+  <h2>The Problem</h2>
+  <p>
+    A six-wheeled rover requires multiple motors and drivers to respond consistently through
+    one control system while also receiving commands wirelessly.
+  </p>
+
+  <p>
+    The challenge was to consolidate the electronics and create a reliable command path from
+    the operator to the rover's six-wheel drivetrain.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>Motor Control</b>
+      Coordinate multiple motor drivers through a single embedded controller.
+    </div>
+
+    <div class="step">
+      <b>Electrical Integration</b>
+      Reduce loose wiring by consolidating control connections onto a custom PCB.
+    </div>
+
+    <div class="step">
+      <b>Wireless Operation</b>
+      Receive remote commands without requiring a physical connection to the rover.
+    </div>
+
+    <div class="step">
+      <b>System Response</b>
+      Translate wireless commands into predictable wheel motion and rover movement.
+    </div>
+
+  </div>
+
+
+  <h2>Control Architecture</h2>
+  <p>
+    I first defined how commands would move through the rover from the operator interface
+    to the drivetrain.
+  </p>
+
+  <p>
+    The architecture connected:
+    <strong>
+      wireless input → Arduino control → motor drivers → six-wheel actuation
+    </strong>.
+  </p>
+
+  <div class="project-gallery two">
+    <img src="../assets/images/rover-architecture-1.jpg"
+         alt="Rover control architecture">
+
+    <img src="../assets/images/rover-overview-1.jpg"
+         alt="Six-wheeled rover prototype">
+  </div>
+
+
+  <h2>Custom PCB Design</h2>
+  <p>
+    I designed a custom PCB in <strong>Eagle</strong> to consolidate connections between
+    the Arduino controller, motor drivers, power connections, and supporting electronics.
+  </p>
+
+  <p>
+    Moving the control connections onto one board reduced the dependence on point-to-point
+    wiring and created a cleaner hardware architecture for the rover.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>Component Integration</b>
+      Organized motor-driver, controller, power, and communication connections on one board.
+    </div>
+
+    <div class="step">
+      <b>Routing</b>
+      Developed PCB traces to connect the control and motor-driver circuitry.
+    </div>
+
+    <div class="step">
+      <b>Packaging</b>
+      Arranged the board around the available rover electronics space.
+    </div>
+
+  </div>
+
+  <div class="project-gallery two">
+    <img class="no-crop"
+         src="../assets/images/rover-pcb-layout.jpg"
+         alt="Rover PCB layout in Eagle">
+
+    <img src="../assets/images/rover-pcb-physical.jpg"
+         alt="Manufactured rover PCB">
+  </div>
+
+
+  <h2>PCB Manufacturing &amp; Assembly</h2>
+  <p>
+    After completing the board design, I manufactured and assembled the PCB and integrated
+    the components required for rover motion and control.
+  </p>
+
+  <p>
+    This moved the project from schematic and layout work into a physical control system
+    that could be connected directly to the rover hardware.
+  </p>
+
+  <div class="project-gallery two">
+    <img src="../assets/images/rover-assembly-1.jpg"
+         alt="Rover PCB assembly">
+
+    <img src="../assets/images/rover-wiring-1.jpg"
+         alt="Rover electronics integration">
+  </div>
+
+
+  <h2>Embedded Control</h2>
+  <p>
+    I programmed the rover using <strong>Arduino</strong>, developing control logic that
+    translated incoming user commands into motor outputs.
+  </p>
+
+  <p>
+    The software provided the logic required to determine how the wheel motors responded
+    to commands for rover movement.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>Receive Command</b>
+      Read the incoming user instruction from the communication module.
+    </div>
+
+    <div class="step">
+      <b>Interpret Command</b>
+      Convert the input into the corresponding rover movement.
+    </div>
+
+    <div class="step">
+      <b>Drive Motors</b>
+      Send control outputs to the motor drivers.
+    </div>
+
+    <div class="step">
+      <b>Move Rover</b>
+      Coordinate wheel actuation to produce the requested vehicle motion.
+    </div>
+
+  </div>
+
+
+  <h2>Wireless Communication</h2>
+  <p>
+    I integrated an <strong>HC-05 Bluetooth module</strong> to provide wireless command
+    transmission between the operator and rover.
+  </p>
+
+  <p>
+    This completed the control chain by allowing user commands to reach the Arduino
+    wirelessly before being converted into motor actions.
+  </p>
+
+  <div class="project-gallery two">
+    <img src="../assets/images/rover-hc05.jpg"
+         alt="HC-05 wireless communication module">
+
+    <img src="../assets/images/rover-control-test.jpg"
+         alt="Wireless rover control testing">
+  </div>
+
+
+  <h2>System Testing</h2>
+  <p>
+    Once the PCB, software, motor drivers, and wireless system were integrated, I tested
+    the complete rover as one electromechanical system.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>Communication Check</b>
+      Verified that wireless commands were received consistently by the controller.
+    </div>
+
+    <div class="step">
+      <b>Command Validation</b>
+      Confirmed that received commands were interpreted correctly by the Arduino logic.
+    </div>
+
+    <div class="step">
+      <b>Motor Response</b>
+      Checked that the motor drivers produced the intended wheel response.
+    </div>
+
+    <div class="step">
+      <b>Vehicle Test</b>
+      Verified the complete command-to-motion sequence on the six-wheel platform.
+    </div>
+
+  </div>
+
+
+  <h2>Engineering Workflow</h2>
+
+  <div class="impact-grid">
+
+    <div class="impact">
+      <b>Design</b>
+      <span>custom PCB architecture</span>
+    </div>
+
+    <div class="impact">
+      <b>Build</b>
+      <span>PCB and electronics assembly</span>
+    </div>
+
+    <div class="impact">
+      <b>Program</b>
+      <span>Arduino motor control</span>
+    </div>
+
+    <div class="impact">
+      <b>Integrate</b>
+      <span>wireless six-wheel control</span>
+    </div>
+
+  </div>
+
+
+  <h2>Outcome</h2>
+  <p>
+    The project consolidated motor control, custom PCB hardware, Arduino software, and
+    Bluetooth communication into one rover control architecture.
+  </p>
+
+  <p>
+    The final control path connected:
+    <strong>
+      wireless command → embedded logic → motor drivers → six-wheel motion
+    </strong>,
+    enabling remote control through an integrated hardware and software system.
+  </p>
+
+</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span data-year></span> Vanshika Bhatia</span>
+    <a href="../index.html">Back home</a>
+  </div>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

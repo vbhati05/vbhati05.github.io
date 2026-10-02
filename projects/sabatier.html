@@ -1,0 +1,304 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sabatier Fuel Reactor | Vanshika Bhatia</title><link rel="stylesheet" href="../styles.css"></head><body>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="../index.html">Home</a><nav class="nav-links"><a href="../index.html#work">Work</a><a href="../index.html#projects">Projects</a><a href="Resume_26-27.pdf">Resume</a><a class="nav-cta" href="../index.html#contact">Contact</a></nav></div></header>
+<main><section class="project-hero"><div class="container"><a class="back" href="../index.html">← Back to portfolio</a><div class="eyebrow">UBC Mars Colony · Electrical Subteam Member</div><h1 class="project-title">Sabatier Fuel Reactor</h1><p class="project-deck">Power-control and temperature-regulation work for a Sabatier reactor using PCB design, simulation, and PID control.</p><div class="project-meta"><span class="tag">Sep 2023 – Sep 2025</span></div></div></section>
+<section><div class="container project-body"><aside class="project-aside"><h4>Tools & methods</h4><p>KiCad · LTSpice · MOSFET · Zero-cross · TRIAC · PID</p><h4>Role</h4><p>UBC Mars Colony · Electrical Subteam Member</p></aside>
+  <div class="case">
+
+  <h2>Overview</h2>
+  <p>
+    The Sabatier Fuel Reactor is part of UBC Mars Colony's work toward producing fuel using
+    resources available on Mars. Since the Martian atmosphere provides a carbon-dioxide-rich
+    environment, the larger reactor system explores how CO₂ can be processed through the Sabatier
+    reaction to produce methane rather than relying entirely on propellant transported from Earth.
+  </p>
+
+  <p>
+    My work focused on the <strong>power electronics and temperature-control architecture</strong>
+    of the reactor. I worked on understanding and validating the existing switching circuitry,
+    replacing loose prototype wiring with dedicated PCBs, and integrating temperature feedback
+    through PID control.
+  </p>
+
+
+  <h2>From Prototype Wiring to a Control System</h2>
+  <p>
+    When I began working with the reactor electronics, the control circuitry relied heavily on
+    loose point-to-point wiring between components. The setup worked well for early experimentation,
+    but as more switching, sensing, and control hardware was added, the wiring became harder to
+    organize, troubleshoot, and reproduce.
+  </p>
+
+  <p>
+    Rather than immediately transferring the circuit onto a PCB, I first needed to understand exactly
+    how power was being controlled. The heater required a predictable method of switching AC power,
+    while the temperature-control system needed a way to continuously adjust that power based on the
+    thermal state of the reactor.
+  </p>
+
+  <div class="project-gallery stack">
+    <img src="../assets/images/loosewiring.jpg"
+         alt="Original loose-wiring Sabatier reactor control setup">
+  </div>
+
+
+  <h2>Understanding the Power Electronics</h2>
+  <p>
+    The power-control architecture used <strong>zero-cross detection, TRIAC switching, and a
+    MOSFET-based control stage</strong>. The objective was to control power delivery to the reactor
+    heater in coordination with the AC waveform rather than switching the load at arbitrary points
+    in the electrical cycle.
+  </p>
+
+  <p>
+    I broke the circuit into functional stages so I could understand how the incoming waveform,
+    zero-cross detector, control pulse, and TRIAC interacted. This was important because a circuit
+    could be electrically connected correctly while still producing incorrect switching timing.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>AC Waveform</b>
+      The circuit receives the alternating-current signal supplying the heating system.
+    </div>
+
+    <div class="step">
+      <b>Zero-Cross Detection</b>
+      The circuit identifies when the AC waveform approaches its zero-voltage crossing.
+    </div>
+
+    <div class="step">
+      <b>Control Pulse</b>
+      The switching stage generates the pulse used to command the power electronics.
+    </div>
+
+    <div class="step">
+      <b>TRIAC Switching</b>
+      The TRIAC controls the electrical power delivered to the reactor heater.
+    </div>
+
+  </div>
+
+
+  <h2>Validating the Switching Behaviour in LTSpice</h2>
+  <p>
+    Before moving the design onto a physical PCB, I recreated the key switching circuit in
+    <strong>LTSpice</strong>. This allowed me to validate the behaviour of the zero-cross and
+    pulsating circuit without introducing PCB fabrication or hardware faults into the troubleshooting
+    process.
+  </p>
+
+  <p>
+    I compared the control signals with the AC waveform to understand when the circuit was switching
+    and whether the generated pulses appeared at the intended point in the cycle. The simulation gave
+    me a much clearer picture of the dynamic behaviour than a schematic alone could provide.
+  </p>
+
+  <p>
+    This became the validation step between understanding the original circuit and redesigning it
+    as dedicated hardware.
+  </p>
+
+  <div class="project-gallery stack">
+    <img class="no-crop"
+         src="../assets/images/ltspicesetup.png"
+         alt="LTSpice simulation of the Sabatier zero-cross and pulsating switching circuit">
+    <img class="no-crop"
+         src="../assets/images/pulasatingckt.PNG"
+         alt="LTSpice simulation of the Sabatier zero-cross and pulsating switching circuit">
+  </div>
+
+
+  <h2>Replacing Loose Wiring with Dedicated PCBs</h2>
+  <p>
+    Once I understood and validated the switching architecture, I transferred the system into
+    <strong>KiCad</strong>. My goal was to replace the loose wiring with purpose-built
+    power-electronics PCBs that defined the critical connections directly on the board.
+  </p>
+
+  <p>
+    I first recreated the circuit as a schematic and worked through the connections between the
+    zero-cross stage, switching components, control inputs, and external interfaces. I then selected
+    footprints and converted the schematic into the physical PCB layout.
+  </p>
+
+  <p>
+    Moving to a PCB introduced another layer of engineering beyond simply reproducing the circuit.
+    Component placement, connector accessibility, board dimensions, routing, physical footprints,
+    and the separation of different functional sections all had to work together.
+  </p>
+
+  <div class="project-gallery stack">
+    <img class="no-crop"
+         src="../assets/images/pcbmarscol.png"
+         alt="Integrated Sabatier reactor power-electronics PCB">
+  </div>
+
+  <p>
+    The PCB changed the system from a collection of individually wired components into a repeatable
+    electrical architecture. Connections that previously had to be recreated manually were now
+    defined by the board, making the system cleaner, easier to trace, and easier to integrate with
+    the rest of the reactor.
+  </p>
+
+
+  <h2>Closing the Loop with Temperature Control</h2>
+  <p>
+    Controlling electrical power was only half of the problem. The system also needed to determine
+    <strong>how much heating the reactor actually required</strong>.
+  </p>
+
+  <p>
+    I worked with both the hardware and software of a
+    <strong>PID-controlled temperature sensing system</strong>. The temperature sensor continuously
+    measured the reactor condition and returned that value to the controller. The measured temperature
+    could then be compared against the desired operating setpoint.
+  </p>
+
+  <p>
+    Instead of operating the heater at a fixed input, the PID controller used the temperature error
+    and its behaviour over time to determine the required correction. That output could then feed back
+    into the heater-control architecture.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>01 · Measure</b>
+      Read the current reactor temperature from the sensor.
+    </div>
+
+    <div class="step">
+      <b>02 · Compare</b>
+      Calculate the difference between measured temperature and the desired setpoint.
+    </div>
+
+    <div class="step">
+      <b>03 · Calculate</b>
+      Use proportional, integral, and derivative terms to determine the required correction.
+    </div>
+
+    <div class="step">
+      <b>04 · Command</b>
+      Convert the controller output into a heater-power request.
+    </div>
+
+    <div class="step">
+      <b>05 · Feedback</b>
+      Measure the resulting temperature and repeat the loop continuously.
+    </div>
+
+  </div>
+
+
+  <h2>Connecting Temperature Control to Power Delivery</h2>
+  <p>
+    This was where the different pieces of my work came together. The PID controller determined
+    what the reactor needed thermally, while the power-electronics system provided the mechanism
+    for changing the energy delivered to the heater.
+  </p>
+
+  <p>
+    The complete control path could therefore be treated as one closed system:
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>Temperature Sensor</b>
+      Measures the reactor's current thermal condition.
+    </div>
+
+    <div class="step">
+      <b>PID Controller</b>
+      Determines the required heating correction.
+    </div>
+
+    <div class="step">
+      <b>Control Signal</b>
+      Converts the PID output into an electrical switching command.
+    </div>
+
+    <div class="step">
+      <b>Zero-Cross / TRIAC Circuit</b>
+      Controls the AC power delivered to the heater.
+    </div>
+
+    <div class="step">
+      <b>Reactor Heater</b>
+      Changes the reactor temperature, which is measured again to close the loop.
+    </div>
+
+  </div>
+
+
+  <h2>Why the Hardware Redesign Mattered</h2>
+  <p>
+    The value of moving to dedicated PCBs went beyond making the wiring look cleaner. It made the
+    control system more structured and repeatable.
+  </p>
+
+  <p>
+    With the critical electrical paths defined on the PCB, troubleshooting could focus on functional
+    sections instead of tracing individual loose connections. It also created clearer interfaces between
+    the switching electronics, controller, sensors, and reactor hardware.
+  </p>
+
+  <p>
+    For me, the project became a progression from understanding an experimental circuit to developing
+    something closer to an engineered subsystem: simulate the behaviour first, define the architecture,
+    package it into hardware, and then connect it to the physical process being controlled.
+  </p>
+
+
+  <h2>Engineering Workflow</h2>
+
+  <div class="impact-grid">
+
+    <div class="impact">
+      <b>Understand</b>
+      <span>reactor power requirements</span>
+    </div>
+
+    <div class="impact">
+      <b>Validate</b>
+      <span>switching behaviour in LTSpice</span>
+    </div>
+
+    <div class="impact">
+      <b>Integrate</b>
+      <span>power electronics onto PCBs</span>
+    </div>
+
+    <div class="impact">
+      <b>Control</b>
+      <span>temperature through PID feedback</span>
+    </div>
+
+  </div>
+
+
+  <h2>Outcome</h2>
+  <p>
+    My work helped move the reactor controls from a loosely wired prototype toward a more integrated
+    power and temperature-control architecture. I validated the zero-cross and pulsating switching
+    behaviour in LTSpice before hardware implementation, translated the power electronics into
+    dedicated PCBs, and worked with PID feedback to connect reactor temperature directly to heater control.
+  </p>
+
+  <p>
+    The development path became:
+    <strong>
+      prototype wiring → circuit understanding → LTSpice validation → PCB integration →
+      temperature sensing → PID feedback → controlled power delivery
+    </strong>.
+  </p>
+
+  <p>
+    What began as separate switching and sensing circuits became a coordinated control system built
+    around the actual reactor requirement: deliver power predictably, measure the thermal response,
+    and continuously adjust the system toward the required operating temperature.
+  </p>
+
+</div></div></section></main>
+<footer><div class="container footer-row"><span>© <span data-year></span> Vanshika Bhatia</span><a href="../index.html">Back home</a></div></footer><script src="../script.js"></script></body></html>

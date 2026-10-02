@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CanSat | Vanshika Bhatia</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="../index.html">Home</a>
+    <nav class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="Resume_26-27.pdf">Resume</a>
+      <a class="nav-cta" href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero">
+    <div class="container">
+      <a class="back" href="../index.html">← Back to portfolio</a>
+      <div class="eyebrow">Space Technology & Aeronautical Rocketry · Mechatronics</div>
+      <h1 class="project-title">CanSat</h1>
+      <p class="project-deck">A compact mechatronics system integrating mechanical design, sensor-based control, custom electronics, and automated parachute deployment.</p>
+      <div class="project-meta"><span class="tag">Jul 2024 – Aug 2024</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container project-body">
+      <aside class="project-aside">
+        <h4>Tools & methods</h4>
+        <p>Arduino · C/C++ · PCB Manufacturing · 3D Printing · Sensor Integration</p>
+        <h4>Focus</h4>
+        <p>Mechatronics · Embedded Control · Prototyping</p>
+      </aside>
+
+      <div class="case">
+
+  <h2>Overview</h2>
+  <p>
+    I designed the CanSat as a compact mechatronics system that could package the electronics,
+    payload, and recovery mechanism inside a structure roughly the size of a standard can.
+    The project combined mechanical design, PCB packaging, barometric sensing, embedded control,
+    and parachute deployment into one system.
+  </p>
+
+  <p>
+    My main challenge was not just fitting everything inside the enclosure. The structure had to
+    remain easy to assemble and access, while the electronics needed to detect the deployment
+    condition and trigger the recovery system automatically.
+  </p>
+
+
+  <h2>Designing Around the Internal Hardware</h2>
+  <p>
+    I started with the mechanical architecture in CAD. Because the available volume was extremely
+    limited, I designed the enclosure around the PCB and payload rather than treating them as
+    components to fit afterward.
+  </p>
+
+  <p>
+    Internal grooves were added to guide and locate the PCB inside the body while keeping the
+    remaining volume available for payload. This gave the electronics a defined mounting position
+    without consuming unnecessary internal space or requiring a separate support structure.
+  </p>
+
+  <p>
+    I also made the top section removable so the PCB and payload could be accessed without
+    disassembling the entire CanSat. This made installation, wiring changes, testing, and later
+    troubleshooting significantly easier.
+  </p>
+
+  <div class="project-gallery two">
+    <img src="../assets/images/CANSATcadtop.png"
+         alt="CanSat CAD showing internal PCB grooves and payload space">
+
+    <img src="../assets/images/cansat_pcb.jpg"
+         alt="CanSat internal packaging for PCB and payload">
+  </div>
+
+  <p>
+    The recovery system also had to be designed into the enclosure from the beginning. Attachment
+    holes were incorporated near the upper portion of the structure so the parachute could connect
+    directly to the CanSat while remaining positioned above the body during deployment.
+  </p>
+
+  <p>
+    Packaging the parachute, electronics, payload, and attachment points together meant the mechanical
+    design had to support both normal assembly and the forces associated with recovery.
+  </p>
+
+
+  <h2>Turning Atmospheric Pressure into a Deployment Command</h2>
+  <p>
+    Once the mechanical layout was established, I worked on the electronics required to make the
+    recovery system autonomous.
+  </p>
+
+  <p>
+    A <strong>barometric pressure sensor</strong> was used to monitor atmospheric pressure. Instead
+    of relying on manual activation, the Arduino continuously read the sensor and compared the measured
+    value against a predefined pressure threshold corresponding to the desired deployment condition.
+  </p>
+
+  <p>
+    When that threshold was reached, the controller generated the command that would ultimately trigger
+    the parachute-release mechanism.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>01 · Measure</b>
+      Continuously read atmospheric pressure from the onboard sensor.
+    </div>
+
+    <div class="step">
+      <b>02 · Compare</b>
+      Compare the measured value against the programmed deployment threshold.
+    </div>
+
+    <div class="step">
+      <b>03 · Decide</b>
+      Confirm that the required recovery condition has been reached.
+    </div>
+
+    <div class="step">
+      <b>04 · Trigger</b>
+      Send the output command to the parachute deployment system.
+    </div>
+
+  </div>
+
+
+  <h2>Validating the Logic Before Connecting the Parachute</h2>
+  <p>
+    Before connecting the control system to the actual deployment hardware, I built the circuit on a
+    breadboard and substituted an <strong>LED for the parachute actuator</strong>.
+  </p>
+
+  <p>
+    This gave me a simple and safe way to verify the full control sequence. The pressure sensor supplied
+    the input, the Arduino evaluated the threshold, and the LED represented the deployment command.
+    When the programmed condition was met, the LED switched on and confirmed that the controller was
+    responding correctly.
+  </p>
+
+  <div class="project-gallery two">
+    <img src="../assets/images/pressuretest_cansat.png"
+         alt="CanSat breadboard prototype with pressure sensor and LED">
+
+  </div>
+
+  <p>
+    Testing the logic this way separated the software and sensor validation from the mechanical
+    deployment system. If the threshold or code behaved incorrectly, I could diagnose it without
+    repeatedly operating the parachute mechanism.
+  </p>
+
+  <p>
+    Once the sensor-to-output sequence behaved as expected, the same control logic could be connected
+    to the physical deployment hardware.
+  </p>
+
+
+  <h2>Integrating the Recovery System</h2>
+  <p>
+    The final system linked the mechanical and electrical parts of the project into one recovery
+    sequence. The parachute sat above the CanSat and was connected through the attachment points
+    built into the enclosure.
+  </p>
+
+  <p>
+    During operation, the CanSat monitored atmospheric pressure. When the programmed threshold was
+    reached, the controller issued the deployment command and the parachute system opened to slow the
+    descent and allow the CanSat to be recovered safely.
+  </p>
+
+  <div class="project-gallery two">
+
+    <img src="../assets/images/3dcansat.png"
+         alt="Completed CanSat prototype">
+  </div>
+
+
+  <h2>Outcome</h2>
+  <p>
+    The final design connected mechanical packaging, environmental sensing, embedded logic, and
+    physical recovery into one compact system. The removable enclosure kept the payload and PCB
+    accessible, internal grooves provided controlled electronics packaging, and the pressure-based
+    control logic allowed deployment to occur without manual input.
+  </p>
+
+  <p>
+    The engineering sequence became:
+    <strong>
+      CAD packaging → PCB and payload integration → pressure sensing → threshold logic →
+      breadboard validation → parachute deployment
+    </strong>.
+  </p>
+
+  <div class="impact-grid">
+
+    <div class="impact">
+      <b>Compact</b>
+      <span>can-sized mechanical package</span>
+    </div>
+
+    <div class="impact">
+      <b>Accessible</b>
+      <span>removable top for PCB and payload</span>
+    </div>
+
+    <div class="impact">
+      <b>Sensor Driven</b>
+      <span>pressure-based deployment logic</span>
+    </div>
+
+    <div class="impact">
+      <b>Validated</b>
+      <span>breadboard and LED control test</span>
+    </div>
+
+  </div>
+
+  <p>
+    What made the project valuable was taking a simple recovery requirement and solving it across
+    multiple engineering layers. The enclosure had to physically support the payload and parachute,
+    the sensor had to detect the correct condition, the software had to make the deployment decision,
+    and the electronics had to convert that decision into a physical response.
+  </p>
+
+</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span data-year></span> Vanshika Bhatia</span>
+    <a href="../index.html">Back home</a>
+  </div>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>
